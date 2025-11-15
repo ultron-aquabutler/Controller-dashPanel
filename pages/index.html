@@ -107,42 +107,15 @@
             </nav>
         </header>
         <div class="dashContainer">
-            <div class="picTabContent active" data-content="overview">
-                <div class="container1">
-                    <div class="picBodies picControlPanel control-panel"></div>
-                    <div class="picCircuits picControlPanel control-panel"></div>
-                    <div class="picLights picControlPanel control-panel"></div>
-                    <div class="picPumps picControlPanel picPumpContainer control-panel"></div>
-                    <div class="picChemistry picControlPanel control-panel"></div>
-                </div>
-            </div>
-            <div class="picTabContent" data-content="bodies">
-                <div class="container1">
-                    <div class="picBodies picControlPanel control-panel"></div>
-                    <div class="picFilters picControlPanel control-panel"></div>
-                </div>
-            </div>
-            <div class="picTabContent" data-content="circuits">
-                <div class="container1">
-                    <div class="picCircuits picControlPanel control-panel"></div>
-                    <div class="picLights picControlPanel control-panel"></div>
-                    <div class="picVirtualCircuits picControlPanel control-panel"></div>
-                </div>
-            </div>
-            <div class="picTabContent" data-content="pumps">
-                <div class="container1">
-                    <div class="picPumps picControlPanel picPumpContainer control-panel"></div>
-                </div>
-            </div>
-            <div class="picTabContent" data-content="chemistry">
-                <div class="container1">
-                    <div class="picChemistry picControlPanel control-panel"></div>
-                </div>
-            </div>
-            <div class="picTabContent" data-content="schedules">
-                <div class="container1">
-                    <div class="picSchedules picControlPanel picScheduleContainer control-panel"></div>
-                </div>
+            <div class="container1">
+                <div class="picBodies picControlPanel control-panel" data-tab-group="overview,bodies"></div>
+                <div class="picCircuits picControlPanel control-panel" data-tab-group="overview,circuits"></div>
+                <div class="picLights picControlPanel control-panel" data-tab-group="overview,circuits"></div>
+                <div class="picPumps picControlPanel picPumpContainer control-panel" data-tab-group="overview,pumps"></div>
+                <div class="picChemistry picControlPanel control-panel" data-tab-group="overview,chemistry"></div>
+                <div class="picSchedules picControlPanel picScheduleContainer control-panel" data-tab-group="overview,schedules"></div>
+                <div class="picFilters picControlPanel control-panel" data-tab-group="bodies"></div>
+                <div class="picVirtualCircuits picControlPanel control-panel" data-tab-group="circuits"></div>
             </div>
         </div>
         <div class="configContainer">
@@ -169,6 +142,41 @@
             $('div.picFilters').bodyFilters();
             
             // Tab switching functionality
+            var currentTab = 'overview';
+            
+            function showTabPanels(tabName) {
+                currentTab = tabName;
+                // Hide all panels in dashContainer first (but not the controller panel in header)
+                $('.dashContainer .control-panel').each(function() {
+                    var tabGroups = $(this).attr('data-tab-group');
+                    if (tabGroups) {
+                        var groups = tabGroups.split(',');
+                        if (groups.indexOf(tabName) !== -1) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    } else {
+                        // No tab group means hide it
+                        $(this).hide();
+                    }
+                });
+            }
+            
+            // Periodically enforce tab visibility (every 100ms for first 2 seconds, then every second)
+            var enforceCount = 0;
+            var enforceInterval = setInterval(function() {
+                showTabPanels(currentTab);
+                enforceCount++;
+                if (enforceCount > 20) {
+                    clearInterval(enforceInterval);
+                    // Continue enforcing but less frequently
+                    setInterval(function() {
+                        showTabPanels(currentTab);
+                    }, 1000);
+                }
+            }, 100);
+            
             $('.picNavTab').on('click', function(e) {
                 e.preventDefault();
                 var tabName = $(this).data('tab');
@@ -202,17 +210,25 @@
                 // Switch tabs
                 $('.picNavTab').removeClass('active');
                 $(this).addClass('active');
-                $('.picTabContent').removeClass('active');
-                $('.picTabContent[data-content="' + tabName + '"]').addClass('active');
+                
+                // Show/hide panels based on tab
+                showTabPanels(tabName);
                 
                 // Store active tab
                 localStorage.setItem('activeTab', tabName);
             });
             
+            // Initialize - show overview panels after widgets are initialized
+            setTimeout(function() {
+                showTabPanels('overview');
+            }, 100);
+            
             // Restore last active tab
             var activeTab = localStorage.getItem('activeTab');
             if (activeTab && activeTab !== 'config') {
-                $('.picNavTab[data-tab="' + activeTab + '"]').click();
+                setTimeout(function() {
+                    $('.picNavTab[data-tab="' + activeTab + '"]').click();
+                }, 150);
             }
         });
     </script>

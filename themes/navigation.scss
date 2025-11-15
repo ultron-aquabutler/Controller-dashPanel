@@ -46,22 +46,38 @@
   }
 }
 
-// Tab content visibility
-.picTabContent {
-  display: none;
-  width: 100%;
-  
-  &.active {
-    display: block;
-  }
-  
+// Improved container layout
+.dashContainer {
   .container1 {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
+    gap: 0.75rem;
+    padding: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
+}
+
+// Enhanced panel styling for modern look
+.control-panel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 12px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+// Make control panel titles more prominent
+.control-panel-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 12px 12px 0 0;
 }
 
 // Responsive design for mobile devices
@@ -94,6 +110,11 @@
   .picTabContent .container1 {
     padding: 0.25rem;
     gap: 0.25rem;
+  }
+  
+  .dashContainer .container1 {
+    padding: 0.5rem;
+    gap: 0.5rem;
   }
 }
 
