@@ -159,7 +159,7 @@ Discovers pool controllers on the local network using SSDP (Simple Service Disco
 ```
 
 **Notes:**
-- Discovery takes approximately 5 seconds to complete
+- Discovery has a 5-second timeout
 - Searches for `urn:schemas-tagyoureit-org:device:PoolController:1`
 
 **Status Codes:**
@@ -185,7 +185,7 @@ Discovers Relay Equipment Manager (REM) controllers on the local network.
 ```
 
 **Notes:**
-- Discovery takes approximately 5 seconds
+- Discovery has a 5-second timeout
 - Searches for `urn:schemas-rstrouse-org:device:relayEquipmentManager:1`
 
 **Status Codes:**
@@ -472,6 +472,11 @@ Uploads a background image for dashboard customization.
 
 **Form Fields:**
 - `backgroundFile` - Image file (JPG, PNG, GIF, BMP, TIFF)
+
+**Notes:**
+- No explicit file size limit configured (subject to server defaults)
+- Files are stored in `themes/Images/` directory
+- Duplicate filenames will overwrite existing files unless `preserveFile` is enabled
 
 **Response:**
 ```json
