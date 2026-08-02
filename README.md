@@ -18,6 +18,14 @@ To configure the dashPanel you need to place the url for your [nodejs-poolContro
 ### IntelliCenter v3 WebSocket Connection
 For IntelliCenter v3 (firmware 3.004+), dashPanel supports a direct local WebSocket connection to the OCP on port 6680. This eliminates the need for an RS-485 adapter. In the configuration panel, select "IntelliCenter Network" as the port type, then use the Discover button to auto-detect your OCP via mDNS, or enter the host/port manually.
 
+## Themes
+The dashboard ships with several themes selectable from **Settings → Appearance → Theme**:
+
+* `aqualinkd` — **Modern (AqualinkD)**. Tile-based, flat color, rounded tiles, light theme matching the AqualinkD web UI styling. Uses CSS custom properties so end users can theme further via `config.js`.
+* `default`, `sketchy`, `materia`, `purple`, `nurple`, `bootstrap` — the legacy themes.
+
+No external font or image asset is required for the `aqualinkd` theme — Helvetica Neue / system fallbacks only. The three AqualinkD brand logos are bundled in `themes/aqualinkd/` (`aqualinkd-new.png`, `aqualinkd-white.png`, `aqualinkd.png`) and used as CSS background-image decorations in the header. They are static SVGs converted to PNGs from the AqualinkD source.
+
 ## What is Message Manager?
 Message manager allows you to inspect your RS485 communication coming from and going to the [nodejs-poolController](https://github.com/tagyoureit/nodejs-poolController) server.  This tool decodes the messages and displays them in a manner where important chatter on the RS485 connection can be decoded while eliminating the chatter that don't matter.  Special filters can be applied to reduce the information to only the items you are interested in.
 
