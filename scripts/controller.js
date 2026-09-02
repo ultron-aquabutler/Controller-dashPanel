@@ -592,6 +592,7 @@
                     columns: [{ binding: 'code', hidden: true, text: 'code', style: { whiteSpace: 'nowrap' } }, { binding: 'name', hidden: false, text: 'Name', style: { whiteSpace: 'nowrap' } }, { binding: 'desc', text: 'Description', style: { whiteSpace: 'nowrap' } }],
                     items: [
                         { code: 'aqualinkd', name: 'Modern (AqualinkD)', desc: 'Modern tile-based look matching AqualinkD. Light theme, flat color, rounded tiles.' },
+                        { code: 'aqualinkd-dark', name: 'Modern Dark (AqualinkD)', desc: 'Dark variant of the AqualinkD design language. Same layout, dark surfaces.' },
                         { code: 'default', name: 'Default', desc: 'The default theme for the dashPanel.' },
                         { code: 'sketchy', name: 'Sketchy', desc: 'A whimsical display that looks like it is hand drawn.' },
                         { code: 'materia', name: 'Materia', desc: 'Material metaphor using bold colors and highlights.' },
