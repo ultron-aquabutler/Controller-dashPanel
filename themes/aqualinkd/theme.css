@@ -386,6 +386,101 @@ a:hover {
   padding: 4px;
 }
 
+.dashContainer,
+.control-container {
+  grid-template-columns: 1fr;
+  gap: calc(10px * 0.75);
+  padding: 2px;
+}
+
+.picTile {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.picHeader {
+  flex-wrap: wrap;
+  padding: 8px 10px;
+}
+
+@media (min-width: 640px) {
+  .dashContainer,
+  .control-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 768px) {
+  .dashContainer,
+  .control-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .picTile {
+    max-width: none;
+  }
+}
+@media (min-width: 1024px) {
+  .dashContainer,
+  .control-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .dashContainer,
+  .control-container {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media (max-width: 540px) {
+  .picHeader::before {
+    width: 22px;
+    height: 22px;
+  }
+  .picHeader {
+    gap: 8px;
+    font-size: 13px;
+  }
+}
+.picThemeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: auto;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.picThemeToggle:hover,
+.picThemeToggle:focus {
+  background-color: rgba(255, 255, 255, 0.18);
+  outline: none;
+  transform: scale(1.05);
+}
+
+.picThemeToggle:active {
+  transform: scale(0.95);
+}
+
+.picThemeToggle i {
+  font-size: 14px;
+  pointer-events: none;
+}
+
+@media (max-width: 540px) {
+  .picThemeToggle {
+    width: 28px;
+    height: 28px;
+  }
+  .picThemeToggle i {
+    font-size: 12px;
+  }
+}
 .picConfigTabContents {
   background-color: rgb(245, 245, 245);
 }
