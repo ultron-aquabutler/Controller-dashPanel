@@ -380,8 +380,9 @@ a:hover {
 // ----- Responsive layout (mobile-first, breaks up at sm/md/lg/xl) -----
 // The AqualinkD tile grid auto-fits by default; the rules below constrain
 // column counts at each breakpoint so phones get a single column, tablets
-// get 2, and wide desktops get up to 4. The header collapses on narrow
+// get 2, and wide desktops get up to 5. The header collapses on narrow
 // screens so the controller title + status fit without horizontal scroll.
+// Mirrors the light theme's responsive rules; see aqualinkd/widgets.scss.
 
 @mixin breakpoint-sm { @media (min-width: 640px) { @content; } }
 @mixin breakpoint-md { @media (min-width: 768px) { @content; } }
@@ -434,7 +435,7 @@ a:hover {
   }
 }
 
-// Wide desktops (≥ 1280px): five columns, slightly wider tiles
+// Wide desktops (≥ 1280px): five columns
 @include breakpoint-xl {
   .dashContainer,
   .control-container {
@@ -455,10 +456,8 @@ a:hover {
 }
 
 // ----- Theme mode toggle (light/dark) -----
-// Sun/moon button rendered by the inline IIFE in pages/index.html and
-// pages/messageManager.html. Lives in the .picHeader flex row and uses
-// the same surface tokens as the rest of the theme, so it inherits the
-// dark palette automatically when the aqualinkd-dark theme is active.
+// Same as the light theme — uses rgba() so it reads correctly on the dark
+// header without depending on $header_text contrast tricks.
 .picThemeToggle {
   display: inline-flex;
   align-items: center;
@@ -470,12 +469,12 @@ a:hover {
   cursor: pointer;
   user-select: none;
   color: $header_text;
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.10);
   transition: background-color 0.15s ease, transform 0.15s ease;
 }
 .picThemeToggle:hover,
 .picThemeToggle:focus {
-  background-color: rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.22);
   outline: none;
   transform: scale(1.05);
 }
