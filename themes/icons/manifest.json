@@ -1,5 +1,8 @@
 {
- "name": "App",
+ "name": "AquaButler",
+ "short_name": "AquaButler",
+ "theme_color": "#0050b3",
+ "background_color": "#f5f8fc",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",

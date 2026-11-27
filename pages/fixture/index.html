@@ -3,12 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pool Control Dashboard - Fixture</title>
+    <title>AquaButler Pool Control Dashboard - Fixture</title>
     <!-- Force a theme for the fixture (overrides any localStorage). -->
     <script>
         // Set the theme before stylesheets load so the right CSS is requested.
+        // AquaButler is the canonical theme (locked 2026-10-19, kanban
+        // t_1e9f6f85) - the previous aqualinkd default is gone. The
+        // ?theme= override is still honoured so we can diff a theme
+        // locally, but it can only select a theme that exists on disk.
         var params = new URLSearchParams(window.location.search);
-        var theme = params.get('theme') || 'aqualinkd';
+        var theme = params.get('theme') || 'aquabutler';
         try { localStorage.setItem('dashTheme', theme); } catch (e) {}
     </script>
     <link rel="stylesheet" type="text/css" href="../node_modules/jquery-ui/jquery-ui.css" />
@@ -18,7 +22,7 @@
     <link id="cssref_widgets" rel="stylesheet" type="text/css" href="../themes/widgets.css" />
     <link id="cssref_config" rel="stylesheet" type="text/css" href="../themes/configPage.css" />
     <link id="cssref_dash" rel="stylesheet" type="text/css" href="../themes/dashboard.css" />
-    <link id="cssref_theme" rel="stylesheet" type="text/css" href="../themes/aqualinkd/theme.css" data-theme="aqualinkd" />
+    <link id="cssref_theme" rel="stylesheet" type="text/css" href="../themes/aquabutler/theme.css" data-theme="aquabutler" />
     <!-- Stub the socket before any script tries to use it. -->
     <script>
         window.io = function() {
